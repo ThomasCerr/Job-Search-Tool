@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { --radius: 14px; }
+
+html, body {
+  @apply text-slate-900 min-h-screen;
+  background: linear-gradient(-45deg, #1e3a8a, #2563eb, #3b82f6, #0ea5e9);
+  background-size: 400% 400%;
+  animation: gradient 12s ease infinite;
+}
+
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.container { @apply max-w-3xl mx-auto px-6; }
+.card { @apply bg-white rounded-2xl shadow-2xl border border-slate-100; }
+.input { @apply w-full rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-blue-600 px-3 py-2 transition; }
+.select { @apply w-full rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-blue-600 px-3 py-2 bg-white; }
+.label { @apply text-sm font-semibold text-slate-700; }
+.help { @apply text-xs text-slate-500; }
+.btn { @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 font-semibold transition active:scale-[.97]; }
+.btn-primary { @apply bg-blue-600 text-white hover:bg-blue-700 shadow-lg; }
+.btn-secondary { @apply bg-black text-white hover:bg-slate-800 shadow-lg; }
+.link-btn { @apply text-blue-600 underline font-medium hover:text-blue-800 transition; }
