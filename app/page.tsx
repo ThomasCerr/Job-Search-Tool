@@ -67,7 +67,7 @@ export default function Page(){
             </div>
             <div>
               <label className="label">Location</label>
-              <input className="input mt-1" placeholder="e.g., Chicago, IL or Remote" value={location} onChange={e=>setLocation(e.target.value)} />
+              <input className="input mt-1" placeholder="e.g., Chicago, IL" value={location} onChange={e=>setLocation(e.target.value)} />
             </div>
             <div>
               <label className="label">Last X Hours</label>
@@ -102,7 +102,7 @@ export default function Page(){
             {/* Show action buttons always */}
             <div className="text-center mt-8 space-y-5">
               <div className="flex justify-center gap-3">
-                <a target="_blank" href={link} className="btn btn-primary">Open Jobs in New Tab</a>
+                <a target="_blank" href={link} className="btn btn-primary">Searrch Fresh Jobs!</a>
                 <button className="btn btn-secondary" onClick={copy}>Copy URL</button>
               </div>
             </div>
