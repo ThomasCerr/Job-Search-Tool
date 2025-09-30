@@ -14,19 +14,36 @@ export default function Page(){
   const [showButtons, setShowButtons] = useState(false)
 
   const generate = ()=>{
-    const p = new URLSearchParams()
-    if (keywords.trim()) p.set('keywords', keywords.trim())
-    if (location.trim()) {
-  p.set('location', location.trim())
-} else {
-  p.set('location', 'Worldwide') 
-}
-    if (hours>0) p.set('f_TPR', 'r'+(hours*3600))
-    if (workType!=='Any') p.set('f_WT', workType.toLowerCase())
-    if (exp!=='Any') p.set('f_E', exp.toLowerCase())
-    setLink(`https://www.linkedin.com/jobs/search/?${p.toString()}`)
-    setShowButtons(true)
+  const p = new URLSearchParams()
+  if (keywords.trim()) p.set('keywords', keywords.trim())
+  if (location.trim()) {
+    p.set('location', location.trim())
+  } else {
+    p.set('location', 'Worldwide') 
   }
+  if (hours>0) p.set('f_TPR', 'r'+(hours*3600))
+
+  // LinkedIn expects numeric codes, not text
+  const workTypeMap: Record<string,string> = {
+    "On-site": "1",
+    "Remote": "2",
+    "Hybrid": "3"
+  }
+  const expMap: Record<string,string> = {
+    "Internship": "1",
+    "Entry": "2",
+    "Associate": "3",
+    "Mid-Senior": "4",
+    "Director": "5",
+    "Executive": "6"
+  }
+
+  if (workType!=='Any') p.set('f_WT', workTypeMap[workType])
+  if (exp!=='Any') p.set('f_E', expMap[exp])
+
+  setLink(`https://www.linkedin.com/jobs/search/?${p.toString()}`)
+  setShowButtons(true)
+}
 
   const copy = async()=>{
     try { await navigator.clipboard.writeText(link) } catch {}
