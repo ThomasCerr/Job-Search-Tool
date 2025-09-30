@@ -16,7 +16,11 @@ export default function Page(){
   const generate = ()=>{
     const p = new URLSearchParams()
     if (keywords.trim()) p.set('keywords', keywords.trim())
-    if (location.trim()) p.set('location', location.trim())
+    if (location.trim()) {
+  p.set('location', location.trim())
+} else {
+  p.set('location', 'Worldwide') 
+}
     if (hours>0) p.set('f_TPR', 'r'+(hours*3600))
     if (workType!=='Any') p.set('f_WT', workType.toLowerCase())
     if (exp!=='Any') p.set('f_E', exp.toLowerCase())
