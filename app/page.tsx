@@ -110,7 +110,7 @@ export default function Page(){
             {showButtons && (
               <div className="text-center mt-8 space-y-5">
                 <div className="flex justify-center gap-3">
-                  <a target="_blank" href={link} className="btn btn-primary">Open Jobs in New Tab</a>
+                  <a target="_blank" href={link} className="btn btn-primary">Search Fresh Jobs - New Tab</a>
                   <button className="btn btn-secondary" onClick={copy}>Copy URL</button>
                 </div>
               </div>
