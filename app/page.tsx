@@ -11,7 +11,6 @@ export default function Page(){
   const [workType,setWorkType] = useState<WorkType>('Any')
   const [exp,setExp] = useState<Experience>('Any')
   const [link,setLink] = useState<string>('https://www.linkedin.com/jobs/search/')
-  const [showButtons, setShowButtons] = useState(false)
 
   // Auto-generate link whenever filters change
   useEffect(()=>{
@@ -46,6 +45,13 @@ export default function Page(){
 
   const copy = async()=>{
     try { await navigator.clipboard.writeText(link) } catch {}
+    track("copy_url")
+  }
+
+  const track = (action:string)=>{
+    if (typeof window !== "undefined" && (window as any).gtag) {
+      (window as any).gtag("event", action, { event_category: "button" })
+    }
   }
 
   return (
@@ -99,10 +105,12 @@ export default function Page(){
               </div>
             </div>
 
-            {/* Show action buttons always */}
+            {/* Action buttons always visible */}
             <div className="text-center mt-8 space-y-5">
               <div className="flex justify-center gap-3">
-                <a target="_blank" href={link} className="btn btn-primary">Searrch Fresh Jobs!</a>
+                <a target="_blank" href={link} className="btn btn-primary" onClick={()=>track("open_jobs")}>
+                  Search Fresh Jobs!
+                </a>
                 <button className="btn btn-secondary" onClick={copy}>Copy URL</button>
               </div>
             </div>
