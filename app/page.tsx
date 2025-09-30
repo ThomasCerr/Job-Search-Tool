@@ -20,7 +20,7 @@ export default function Page(){
     if (location.trim()) {
       p.set('location', location.trim())
     } else {
-      p.set('location', 'United States')  // default
+      p.set('location', 'United States')
     }
     if (hours>0) p.set('f_TPR', 'r'+(hours*3600))
 
@@ -42,7 +42,6 @@ export default function Page(){
     if (exp!=='Any') p.set('f_E', expMap[exp])
 
     setLink(`https://www.linkedin.com/jobs/search/?${p.toString()}`)
-    setShowButtons(true)
   }, [keywords, location, hours, workType, exp])
 
   const copy = async()=>{
@@ -100,21 +99,13 @@ export default function Page(){
               </div>
             </div>
 
-            {/* Button just ensures buttons are visible after first click */}
-            {!showButtons && (
-              <div className="flex justify-center mt-6">
-                <button onClick={()=>setShowButtons(true)} className="btn btn-primary">Search Fresh Jobs!</button>
+            {/* Show action buttons always */}
+            <div className="text-center mt-8 space-y-5">
+              <div className="flex justify-center gap-3">
+                <a target="_blank" href={link} className="btn btn-primary">Open Jobs in New Tab</a>
+                <button className="btn btn-secondary" onClick={copy}>Copy URL</button>
               </div>
-            )}
-
-            {showButtons && (
-              <div className="text-center mt-8 space-y-5">
-                <div className="flex justify-center gap-3">
-                  <a target="_blank" href={link} className="btn btn-primary">Search Fresh Jobs - New Tab</a>
-                  <button className="btn btn-secondary" onClick={copy}>Copy URL</button>
-                </div>
-              </div>
-            )}
+            </div>
           </div>
         </section>
       </main>
